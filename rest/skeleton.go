@@ -8,17 +8,13 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/labstack/echo/v4"
-	"github.com/labstack/echo/v4/middleware"
+	"github.com/labstack/echo"
+	"github.com/labstack/echo/middleware"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 
 	"github.com/adhityapp/go-starterkit/bootstrap"
-	"github.com/adhityapp/go-starterkit/internal/gate"
-	"github.com/adhityapp/go-starterkit/internal/health"
-
-	"go.opentelemetry.io/contrib/instrumentation/github.com/labstack/echo"
-	"go.opentelemetry.io/contrib/instrumentation/github.com/labstack/echo/otelecho"
+	"github.com/adhityapp/go-starterkit/internal/gate.go"
 )
 
 func Serve(cfg *bootstrap.Container) {
@@ -34,7 +30,7 @@ func Serve(cfg *bootstrap.Container) {
 	)
 
 	server.Use(
-		otelecho.Middleware(os.Getenv("SERVICE_NAME")),
+		// otelecho.Middleware(os.Getenv("SERVICE_NAME")),
 		middleware.Recover(),
 		middleware.RequestID(),
 		middleware.CORS(),
@@ -52,7 +48,8 @@ func Serve(cfg *bootstrap.Container) {
 	)
 
 	// Call Rest Register
-	health.RestRegister(cfg, server)
+	// health.RestRegister(cfg, server)
+	//handler.RestRegister(server, namafungsihandler)
 
 	go func() {
 		port := viper.GetString("server.port")

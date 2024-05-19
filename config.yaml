@@ -1,0 +1,51 @@
+app: 
+  name: go-starterkit
+  version: v1.0.0 
+
+server: 
+  host: 0.0.0.0 
+  port: 8080 
+
+database: 
+  migration: 
+    path: schema/migrations
+    postgres: 
+      driver: postgres 
+      write: 
+        connection: host={hostname} user={username} password={password} dbname={dbname} port=5432 sslmode=disable 
+        hostname: localhost
+        dbname: try_db
+        username: postgres
+        password: password
+    sqlserver: 
+      driver: sqlserver 
+      write: 
+        connection: host={hostname} user={username} password={password} dbname={dbname} port=1443 target_session_attrs=read-write sslmode=disable 
+        hostname:  
+        dbname:  
+        username:  
+        password:  
+      read: 
+        connection: host={hostname} user={username} password={password} dbname={dbname} port=1443 target_session_attrs=read-write sslmode=disable 
+        hostname: 
+        dbname: 
+        username: 
+        password: 
+
+telemetry: 
+  enable: true 
+  jaeger: 
+    trace_ratio: 1 
+    agent_host: 127.0.0.1 
+    # agent_host: otel-agent.devops 
+    agent_port: 6831 
+
+internalapi: 
+  rintis-be: 
+    inquiryurl : http://localhost:8081 
+    timeuot: 30 
+  w4ts: 
+    baseurl: http://10.111.4.123:8012/ 
+    timeout: 30 
+    check-status-delay: 20 
+    check-status-count: 3 

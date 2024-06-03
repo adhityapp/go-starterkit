@@ -9,28 +9,32 @@ server:
 database: 
   migration: 
     path: schema/migrations
-    postgres: 
-      driver: postgres 
-      write: 
-        connection: host={hostname} user={username} password={password} dbname={dbname} port=5432 sslmode=disable 
-        hostname: localhost
-        dbname: try_db
-        username: postgres
-        password: password
-    sqlserver: 
-      driver: sqlserver 
-      write: 
-        connection: host={hostname} user={username} password={password} dbname={dbname} port=1443 target_session_attrs=read-write sslmode=disable 
-        hostname:  
-        dbname:  
-        username:  
-        password:  
-      read: 
-        connection: host={hostname} user={username} password={password} dbname={dbname} port=1443 target_session_attrs=read-write sslmode=disable 
-        hostname: 
-        dbname: 
-        username: 
-        password: 
+  postgres: 
+    driver: postgres
+    write:
+      hostname: localhost
+      dbname: try_db
+      username: postgres
+      password: password 
+    read: 
+      hostname: localhost
+      dbname: try_db
+      username: postgres
+      password: password
+  sqlserver: 
+    driver: sqlserver 
+    write: 
+      connection: server={hostname} user={username} password={password} dbname={dbname} port=1443 target_session_attrs=read-write sslmode=disable 
+      hostname:  
+      dbname:  
+      username:  
+      password:  
+    read: 
+      connection: host={hostname} user={username} password={password} dbname={dbname} port=1443 target_session_attrs=read-write sslmode=disable 
+      hostname: 
+      dbname: 
+      username: 
+      password: 
 
 telemetry: 
   enable: true 
@@ -41,11 +45,8 @@ telemetry:
     agent_port: 6831 
 
 internalapi: 
-  rintis-be: 
-    inquiryurl : http://localhost:8081 
-    timeuot: 30 
-  w4ts: 
-    baseurl: http://10.111.4.123:8012/ 
+  web: 
+    baseurl: http://00.000.0.000:1433/ 
     timeout: 30 
     check-status-delay: 20 
-    check-status-count: 3 
+    check-status-count: 3

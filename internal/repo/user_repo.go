@@ -2,19 +2,7 @@ package repo
 
 import (
 	"context"
-
-	"github.com/jmoiron/sqlx"
 )
-
-type RepoClient struct {
-	DB sqlx.DB
-}
-
-func UserRepo(DB sqlx.DB) RepoClient {
-	return RepoClient{
-		DB: DB,
-	}
-}
 
 func (r RepoClient) GetUser(c context.Context) ([]UserModel, error) {
 	var um []UserModel

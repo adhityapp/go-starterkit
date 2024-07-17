@@ -40,8 +40,7 @@ telemetry:
   enable: true 
   jaeger: 
     trace_ratio: 1 
-    agent_host: 127.0.0.1 
-    # agent_host: otel-agent.devops 
+    agent_host: 127.0.0.1
     agent_port: 6831 
 
 internalapi: 

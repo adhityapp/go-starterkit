@@ -44,6 +44,9 @@ func (c *Container) DBMustConnect(isWrite bool) *sqlx.DB {
 	if err != nil {
 		logrus.Panic("Error connecting to SQL Server: ", err.Error())
 	}
-	fmt.Println("Connected to SQL Server!")
+	logrus.
+		WithField("bootstrap", "database").
+		Debugf("connected to %s:%s", host, "1433")
+
 	return conn
 }

@@ -5,7 +5,6 @@ go 1.21
 toolchain go1.22.3
 
 require (
-	github.com/cenkalti/backoff v2.2.1+incompatible
 	github.com/jmoiron/sqlx v1.4.0
 	github.com/joho/godotenv v1.5.1
 	github.com/labstack/echo v3.3.10+incompatible

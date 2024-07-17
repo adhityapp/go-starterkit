@@ -3,19 +3,22 @@ package service
 import (
 	"context"
 
-	"github.com/adhityapp/go-starterkit/internal/repo"
+	"github.com/adhityapp/go-starterkit/internal/viewmodel"
 )
 
-type ServiceClient struct {
-	repo repo.RepoClient
-}
-
-func UserService(repo repo.RepoClient) ServiceClient {
-	return ServiceClient{
-		repo: repo,
+func (s ServiceClient) GetUserService(c context.Context) ([]viewmodel.UserViewModel, error) {
+	var vm []viewmodel.UserViewModel
+	m, err := s.repo.GetUser(c)
+	if err != nil {
+		return nil, err
 	}
-}
-
-func (us ServiceClient) GetUserService(c context.Context) ([]repo.UserModel, error) {
-	return us.repo.GetUser(c)
+	for _, val := range m {
+		var m viewmodel.UserViewModel
+		m.UserID = val.UserID
+		m.Password = val.Password
+		m.Email = val.Email
+		m.Username = val.Username
+		vm = append(vm, m)
+	}
+	return vm, nil
 }

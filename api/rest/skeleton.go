@@ -42,14 +42,14 @@ func Serve(cfg *bootstrap.Container) {
 
 	var (
 		// Init Repo
-		userRepo = repo.UserRepo(*cfg.Dbr())
+		repo = repo.Repo(*cfg.Dbr())
 
 		// Init Service
-		userService = service.UserService(userRepo)
+		service = service.Service(repo)
 		// Init Usecase
 
 		// Init Controller
-		userHandler = handler.UserHandler(userService)
+		userHandler = handler.Handler(service)
 	)
 
 	// Call Rest Register

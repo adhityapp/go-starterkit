@@ -14,7 +14,10 @@ import (
 	"github.com/spf13/viper"
 
 	"github.com/adhityapp/go-starterkit/bootstrap"
-	"github.com/adhityapp/go-starterkit/internal/gate.go"
+	"github.com/adhityapp/go-starterkit/internal/gate"
+	"github.com/adhityapp/go-starterkit/internal/handler"
+	"github.com/adhityapp/go-starterkit/internal/repo"
+	"github.com/adhityapp/go-starterkit/internal/service"
 )
 
 func Serve(cfg *bootstrap.Container) {
@@ -38,18 +41,20 @@ func Serve(cfg *bootstrap.Container) {
 	)
 
 	var (
-	// Init Repo
+		// Init Repo
+		repo = repo.Repo(*cfg.Dbr())
 
-	// Init Service
+		// Init Service
+		service = service.Service(repo)
+		// Init Usecase
 
-	// Init Usecase
-
-	// Init Controller
+		// Init Controller
+		userHandler = handler.Handler(service)
 	)
 
 	// Call Rest Register
 	// health.RestRegister(cfg, server)
-	//handler.RestRegister(server, namafungsihandler)
+	handler.RestRegister(server, userHandler)
 
 	go func() {
 		port := viper.GetString("server.port")

@@ -6,6 +6,8 @@ import (
 	"github.com/jmoiron/sqlx"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
+
+	_ "github.com/lib/pq"
 )
 
 func (c *Container) Dbw() *sqlx.DB {
@@ -28,20 +30,23 @@ func (c *Container) DBMustConnect(isWrite bool) *sqlx.DB {
 		domain = "read"
 	}
 
-	var dsn string
 	host := viper.GetString("database.postgres." + domain + ".hostname")
 	dbname := viper.GetString("database.postgres." + domain + ".dbname")
 	username := viper.GetString("database.postgres." + domain + ".username")
 	password := viper.GetString("database.postgres." + domain + ".password")
 
-	dsn = fmt.Sprintf("server=%s;user id=%s;password=%s;database=%s;encrypt=disable", host, username, password, dbname)
+	dsn := fmt.Sprintf("host=%s user=%s password=%s database=%s sslmode=disable", host, username, password, dbname)
 	conn, err := sqlx.Connect("postgres", dsn)
 	if err != nil {
 		logrus.Panic(err)
 	}
-	if err := conn.Ping(); err != nil {
+	err = conn.Ping()
+	if err != nil {
 		logrus.Panic("Error connecting to SQL Server: ", err.Error())
 	}
-	fmt.Println("Connected to SQL Server!")
+	logrus.
+		WithField("bootstrap", "database").
+		Debugf("connected to %s:%s", host, "1433")
+
 	return conn
 }

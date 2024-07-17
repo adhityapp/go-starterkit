@@ -1,8 +1,8 @@
 package cmd
 
 import (
+	"github.com/adhityapp/go-starterkit/api/rest"
 	"github.com/adhityapp/go-starterkit/bootstrap"
-	"github.com/adhityapp/go-starterkit/rest"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )

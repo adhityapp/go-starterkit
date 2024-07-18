@@ -1,14 +1,14 @@
 package repo
 
 import (
-	"github.com/jmoiron/sqlx"
+	"github.com/adhityapp/go-starterkit/bootstrap"
 )
 
 type RepoClient struct {
-	DB sqlx.DB
+	DB bootstrap.Container
 }
 
-func Repo(DB sqlx.DB) RepoClient {
+func Repo(DB bootstrap.Container) RepoClient {
 	return RepoClient{
 		DB: DB,
 	}

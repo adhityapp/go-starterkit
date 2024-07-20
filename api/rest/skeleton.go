@@ -42,7 +42,7 @@ func Serve(cfg *bootstrap.Container) {
 
 	var (
 		// Init Repo
-		repo = repo.Repo(*cfg.Dbr())
+		repo = repo.Repo(cfg)
 
 		// Init Service
 		service = service.Service(repo)

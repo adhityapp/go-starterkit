@@ -1,0 +1,206 @@
+{
+	"info": {
+		"_postman_id": "e60a3fa2-3173-4b41-a57f-eab966ed4fc4",
+		"name": "InvoiceBEtest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9033054"
+	},
+	"item": [
+		{
+			"name": "GetInvoice",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/getinvoice",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"getinvoice"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetDropdown",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/getdropdown",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"getdropdown"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetInvoiceDetail",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\" : 7\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/getinvoicedetail",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"getinvoicedetail"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ShowInvoice",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\" : 7\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/showinvoice",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"showinvoice"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteItemDetail",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\" : 19\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/deletedetailitem",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"deletedetailitem"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddInvoice",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"subject\": \"HAHAHAHAHAHAH\",\r\n    \"issue_date\": \"2024-07-01T10:00:00Z\",\r\n    \"due_date\": \"2024-08-01T14:30:00Z\",\r\n    \"customer_id\": 3,\r\n    \"total_items\": 3,\r\n    \"amount\": 60,\r\n    \"detail\": [\r\n            {\r\n                \"item_id\": 1,\r\n                \"qty\": 10,\r\n                \"amount\": 100\r\n            },\r\n            {\r\n                \"item_id\": 2,\r\n                \"qty\": 5,\r\n                \"amount\": 50\r\n            },\r\n            {\r\n                \"item_id\": 3,\r\n                \"qty\": 8,\r\n                \"amount\": 80\r\n            },\r\n            {\r\n                \"item_id\": 2,\r\n                \"qty\": 5,\r\n                \"amount\": 50\r\n            },\r\n            {\r\n                \"item_id\": 3,\r\n                \"qty\": 8,\r\n                \"amount\": 80\r\n            }\r\n        ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/addinvoice",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"addinvoice"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateInvoice",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"invoice_id\": 32,\r\n    \"subject\": \"HAHAHAHAHAHAH\",\r\n    \"issue_date\": \"2024-07-01T10:00:00Z\",\r\n    \"due_date\": \"2024-08-01T14:30:00Z\",\r\n    \"customer_id\": 3,\r\n    \"total_items\": 3,\r\n    \"amount\": 60,\r\n    \"detail\": [\r\n            {\r\n                \"detail_item_id\": 56,\r\n                \"item_id\": 1,\r\n                \"qty\": 10,\r\n                \"amount\": 100\r\n            },\r\n            {\r\n                \"detail_item_id\": 57,\r\n                \"item_id\": 2,\r\n                \"qty\": 5,\r\n                \"amount\": 50\r\n            },\r\n            {\r\n                \"detail_item_id\": 58,\r\n                \"item_id\": 3,\r\n                \"qty\": 8,\r\n                \"amount\": 80\r\n            },\r\n            {\r\n                \"detail_item_id\": 59,\r\n                \"item_id\": 2,\r\n                \"qty\": 5,\r\n                \"amount\": 50\r\n            },\r\n            {\r\n                \"detail_item_id\": 60,\r\n                \"item_id\": 3,\r\n                \"qty\": 8,\r\n                \"amount\": 80\r\n            }\r\n        ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/updateinvoice",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"updateinvoice"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

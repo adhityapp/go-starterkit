@@ -21,6 +21,13 @@ database:
       dbname: try_db
       username: postgres
       password: password
+  mysql: 
+    driver: mysql
+    write:
+      hostname: localhost
+      dbname: try_db
+      username: user
+      password: password
   sqlserver: 
     driver: sqlserver 
     write: 

@@ -17,4 +17,11 @@ func Handler(service service.ServiceClient) HandlerClient {
 
 func RestRegister(e *echo.Echo, h HandlerClient) {
 	e.POST("/getuser", h.GetUser)
+	e.POST("/getinvoice", h.GetInvoice)
+	e.POST("/getinvoicedetail", h.GetInvoiceDetail)
+	e.POST("/getdropdown", h.GetDropdown)
+	e.POST("/deletedetailitem", h.DeleteDetailItem)
+	e.POST("/addinvoice", h.AddInvoice)
+	e.POST("/updateinvoice", h.UpdateInvoice)
+	e.POST("/showinvoice", h.ShowInvoice)
 }

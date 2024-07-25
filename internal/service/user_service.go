@@ -2,18 +2,16 @@ package service
 
 import (
 	"context"
-
-	"github.com/adhityapp/go-starterkit/internal/viewmodel"
 )
 
-func (s ServiceClient) GetUserService(c context.Context) ([]viewmodel.UserViewModel, error) {
-	var vm []viewmodel.UserViewModel
+func (s ServiceClient) GetUserService(c context.Context) ([]UserViewModel, error) {
+	var vm []UserViewModel
 	m, err := s.repo.GetUser(c)
 	if err != nil {
 		return nil, err
 	}
 	for _, val := range m {
-		var m viewmodel.UserViewModel
+		var m UserViewModel
 		m.UserID = val.UserID
 		m.Password = val.Password
 		m.Email = val.Email

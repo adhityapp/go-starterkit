@@ -24,8 +24,8 @@ func (r RepoClient) GetUser(c context.Context) ([]UserModel, error) {
 
 func (r RepoClient) GetUserbyUsername(c context.Context, username string) (*UserModel, error) {
 	var m UserModel
-	query := "select user_id, username, password, email, user_role from accounts where username = ?"
-	err := r.Container.Dbr().QueryRowxContext(c, query, username).Scan(&m)
+	query := "select user_id, username, password, email, user_role from accounts where username = $1"
+	err := r.Container.Dbr().QueryRowxContext(c, query, username).StructScan(&m)
 	if err != nil {
 		return nil, err
 	}
@@ -33,7 +33,7 @@ func (r RepoClient) GetUserbyUsername(c context.Context, username string) (*User
 }
 
 func (r RepoClient) AddUser(c context.Context, m UserModel) error {
-	query := "INSERT INTO accounts (username, password, email, user_role) VALUES (?, ?, ?, ?)"
+	query := "INSERT INTO accounts (username, password, email, user_role) VALUES ($1, $2, $3, $4)"
 	_, err := r.Container.Dbr().ExecContext(c, query, m.Username, m.Password, m.Email, m.Role)
 	if err != nil {
 		return err

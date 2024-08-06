@@ -1,6 +1,7 @@
 package auth
 
 import (
+	"fmt"
 	"net/http"
 	"time"
 
@@ -40,11 +41,23 @@ var jwtKey = []byte("my_secret_key")
 // Middleware for checking if the user is an admin
 func AdminMiddleware(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
-		user := c.Get("user").(*jwt.Token)
-		claims := user.Claims.(jwt.MapClaims)
+		tokenString := c.Request().Header.Get("Authorization")[7:]
+		token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
+			if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+				return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
+			}
+			return jwtKey, nil
+		})
+
+		if err != nil || !token.Valid {
+			return c.JSON(http.StatusUnauthorized, err.Error())
+		}
+
+		claims := token.Claims.(jwt.MapClaims)
 		if claims["Role"] != "admin" {
 			return echo.ErrUnauthorized
 		}
+
 		return next(c)
 	}
 }
@@ -52,8 +65,19 @@ func AdminMiddleware(next echo.HandlerFunc) echo.HandlerFunc {
 // Middleware for checking if the user is a regular user
 func UserMiddleware(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
-		user := c.Get("user").(*jwt.Token)
-		claims := user.Claims.(jwt.MapClaims)
+		tokenString := c.Request().Header.Get("Authorization")[7:]
+		token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
+			if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+				return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
+			}
+			return jwtKey, nil
+		})
+
+		if err != nil || !token.Valid {
+			return c.JSON(http.StatusUnauthorized, err.Error())
+		}
+
+		claims := token.Claims.(jwt.MapClaims)
 		role := claims["Role"].(string)
 		if role != "user" && role != "admin" {
 			return echo.ErrUnauthorized

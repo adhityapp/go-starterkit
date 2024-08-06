@@ -19,6 +19,7 @@ func (s ServiceClient) GetUserService(c context.Context) ([]viewmodel.UserViewMo
 		m.Password = val.Password
 		m.Email = val.Email
 		m.Username = val.Username
+		m.Role = val.Role
 		vm = append(vm, m)
 	}
 	return vm, nil

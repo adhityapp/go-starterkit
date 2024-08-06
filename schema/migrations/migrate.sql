@@ -4,7 +4,7 @@ CREATE TABLE accounts (
   password VARCHAR (50) NOT NULL, 
   email VARCHAR (255) UNIQUE NOT NULL,
   user_role VARCHAR (50) NOT NULL, 
-  created_at TIMESTAMP NOT NULL, 
+  created_at TIMESTAMP NOT NULL Default now(), 
   last_login TIMESTAMP
 );
 

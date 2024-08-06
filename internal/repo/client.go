@@ -5,11 +5,11 @@ import (
 )
 
 type RepoClient struct {
-	DB *bootstrap.Container
+	Container *bootstrap.Container
 }
 
-func Repo(DB *bootstrap.Container) RepoClient {
+func Repo(Container *bootstrap.Container) RepoClient {
 	return RepoClient{
-		DB: DB,
+		Container: Container,
 	}
 }

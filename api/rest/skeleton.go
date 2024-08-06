@@ -32,11 +32,18 @@ func Serve(cfg *bootstrap.Container) {
 		middleware.RemoveTrailingSlash(),
 	)
 
+	// JWT middleware
+	// config := middleware.JWTConfig{
+	// 	Claims:     &jwt.MapClaims{},
+	// 	SigningKey: []byte("my_secret_key"),
+	// }
+
 	server.Use(
 		// otelecho.Middleware(os.Getenv("SERVICE_NAME")),
 		middleware.Recover(),
 		middleware.RequestID(),
 		middleware.CORS(),
+		// middleware.JWTWithConfig(config),
 		gate.RestLogger(),
 	)
 

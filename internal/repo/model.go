@@ -5,4 +5,5 @@ type UserModel struct {
 	Username string
 	Password string
 	Email    string
+	Role     string `db:"user_role"`
 }

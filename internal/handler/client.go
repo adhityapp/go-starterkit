@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"github.com/adhityapp/go-starterkit/auth"
 	"github.com/adhityapp/go-starterkit/internal/service"
 	"github.com/labstack/echo"
 )
@@ -16,5 +17,8 @@ func Handler(service service.ServiceClient) HandlerClient {
 }
 
 func RestRegister(e *echo.Echo, h HandlerClient) {
-	e.POST("/getuser", h.GetUser)
+
+	e.POST("/login", h.Login)
+	e.POST("/register", h.Register, auth.AdminMiddleware)
+	e.POST("/getuser", h.GetUser, auth.UserMiddleware)
 }

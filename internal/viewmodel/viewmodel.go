@@ -5,4 +5,5 @@ type UserViewModel struct {
 	Username string `json:"Username"`
 	Password string `json:"Password"`
 	Email    string `json:"Email"`
+	Role     string `json:"Role"`
 }
